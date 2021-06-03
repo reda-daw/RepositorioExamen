@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<Configuration status="WARN">
+
+
+<Properties>
+
+        <Property name="basePath">/home/mint/ficheroLogs</Property>
+
+    </Properties>
+
+  <Appenders>
+
+
+	<Console name="Console">
+
+		<PatternLayout pattern="%d{HH:mm} %-5level %c{20} %msg%n"/>
+
+		
+
+	</Console>
+
+	 <RollingFile name="fileLogger" fileName="${basePath}/reda_logs_3EVA.log" filePattern="${basePath}/reda_logs_3EVA-%d{yyyy-MM-dd-hh-mm}.log">
+
+            <PatternLayout>
+
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+
+            </PatternLayout>
+
+            <Policies>
+
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+
+            </Policies>
+
+        </RollingFile>
+
+	     <File name="File" fileName="${basePath}/salida.txt">
+
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
+
+        </File>
+
+  </Appenders>
+
+
+  <Loggers>
+
+   
+
+    <Root level="all">
+
+      <AppenderRef ref="Console"/>
+
+       <AppenderRef ref="fileLogger" level="warn" />
+
+        <AppenderRef ref="File" />
+
+    </Root>
+
+  </Loggers>
+
+
+</Configuration>
